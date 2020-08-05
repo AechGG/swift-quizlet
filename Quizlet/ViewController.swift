@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         QuizItem(q: "No piece of square dry paper can be folded in half more than 7 times.", a: "False"),
         QuizItem(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
     ];
+    var timer: Timer = Timer();
     
     var questionNumber = 0;
     
@@ -42,16 +43,26 @@ class ViewController: UIViewController {
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         let userAnswer = sender.currentTitle!;
         if quiz[questionNumber].checkAnswer(userAnswer: userAnswer) {
-            print("Correct");
+            sender.backgroundColor = UIColor.green;
         } else {
-            print("Wrong");
+            sender.backgroundColor = UIColor.red;
         }
+        
         if questionNumber != quiz.count - 1 {
             questionNumber += 1;
         } else {
             questionNumber = 0;
         }
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateButton), userInfo: nil, repeats: true)
+        
         updateUI();
+    }
+    
+    @objc func updateButton() {
+        trueButton.backgroundColor = UIColor.clear;
+        falseButton.backgroundColor = UIColor.clear;
+        timer.invalidate();
     }
     
     func updateUI() {

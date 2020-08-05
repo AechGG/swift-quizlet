@@ -13,6 +13,11 @@ struct QuizItem {
     let question: String
     let answer: String
     
+    init(q: String, a: String) {
+        question = q;
+        answer = a;
+    }
+
     // Method
     func checkAnswer(userAnswer: String) -> Bool {
         if userAnswer == answer {

@@ -25,19 +25,24 @@ struct QuizBrain {
     
     var questionNumber : Int = 0;
     
+    var score : Int = 0;
+    
     // Method
-    func checkAnswer(_ userAnswer: String) -> Bool {
+    mutating func checkAnswer(_ userAnswer: String) -> Bool {
         if userAnswer == quiz[questionNumber].answer {
+            score += 1
             return true;
         }
         return false;
     }
     
-    func nextQuestion() {
+    // If making a method that changes a variable inside the struct, you need to make the method mutating
+    // Will not work with let quizBrain = QuizBrain() as the struct is being mutated
+    mutating func nextQuestion() {
         if questionNumber != quiz.count - 1 {
-            self.questionNumber += 1;
+            questionNumber += 1;
         } else {
-            self.questionNumber = 0;
+            questionNumber = 0;
         }
     }
     

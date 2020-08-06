@@ -17,12 +17,4 @@ struct QuizItem {
         question = q;
         answer = a;
     }
-
-    // Method
-    func checkAnswer(userAnswer: String) -> Bool {
-        if userAnswer == answer {
-            return true;
-        }
-        return false;
-    }
 }

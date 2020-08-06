@@ -10,17 +10,16 @@ import Foundation
 
 struct QuizBrain {
     let quiz = [
-        QuizItem(q: "A slug's blood is green.", a: "True"),
-        QuizItem(q: "Approximately one quarter of human bones are in the feet.", a: "True"),
-        QuizItem(q: "The total surface area of two human lungs is approximately 70 square metres.", a: "True"),
-        QuizItem(q: "In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.", a: "True"),
-        QuizItem(q: "In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral, because the building is considered too sacred a place.", a: "False"),
-        QuizItem(q: "You can lead a cow down stairs but not up stairs.", a: "False"),
-        QuizItem(q: "Google was originally called 'Backrub'.", a: "True"),
-        QuizItem(q: "Buzz Aldrin's mother's maiden name was 'Moon'.", a: "True"),
-        QuizItem(q: "The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.", a: "False"),
-        QuizItem(q: "No piece of square dry paper can be folded in half more than 7 times.", a: "False"),
-        QuizItem(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
+        QuizItem(q: "Which is the largest organ in the human body?", a: ["Heart", "Skin", "Large Intestine"], correctAnswer: "Skin"),
+        QuizItem(q: "Five dollars is worth how many nickels?", a: ["25", "50", "100"], correctAnswer: "100"),
+        QuizItem(q: "What do the letters in the GMT time zone stand for?", a: ["Global Meridian Time", "Greenwich Mean Time", "General Median Time"], correctAnswer: "Greenwich Mean Time"),
+        QuizItem(q: "What is the French word for 'hat'?", a: ["Chapeau", "Écharpe", "Bonnet"], correctAnswer: "Chapeau"),
+        QuizItem(q: "In past times, what would a gentleman keep in his fob pocket?", a: ["Notebook", "Handkerchief", "Watch"], correctAnswer: "Watch"),
+        QuizItem(q: "How would one say goodbye in Spanish?", a: ["Au Revoir", "Adiós", "Salir"], correctAnswer: "Adiós"),
+        QuizItem(q: "Which of these colours is NOT featured in the logo for Google?", a: ["Green", "Orange", "Blue"], correctAnswer: "Orange"),
+        QuizItem(q: "What alcoholic drink is made from molasses?", a: ["Rum", "Whisky", "Gin"], correctAnswer: "Rum"),
+        QuizItem(q: "What type of animal was Harambe?", a: ["Panda", "Gorilla", "Crocodile"], correctAnswer: "Gorilla"),
+        QuizItem(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
     ];
     
     var questionNumber : Int = 0;
@@ -29,7 +28,7 @@ struct QuizBrain {
     
     // Method
     mutating func checkAnswer(_ userAnswer: String) -> Bool {
-        if userAnswer == quiz[questionNumber].answer {
+        if userAnswer == quiz[questionNumber].correctAnswer {
             score += 1
             return true;
         }
@@ -49,6 +48,10 @@ struct QuizBrain {
     
     func getQuestionText() -> String {
         return quiz[questionNumber].question;
+    }
+    
+    func getAnswers() -> [String] {
+        return quiz[questionNumber].answers;
     }
     
     func getProgress() -> Float {
